@@ -1,3 +1,5 @@
+import { Fragment, useState } from "react";
+
 import { FaMedal } from "react-icons/fa";
 import { IoMdTrophy } from "react-icons/io";
 import { TfiReload } from "react-icons/tfi";
@@ -5,9 +7,14 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { MdEmojiPeople } from "react-icons/md";
 import { BsFillPersonFill } from "react-icons/bs";
 
-import Button from "../../../components/Button";
+import { Button, Modal } from "show/components";
 
 const Home = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const toggleModal = () => {
+    setOpenModal(!openModal);
+  };
   const topTable = [
     {
       lable: "Name",
@@ -96,66 +103,72 @@ const Home = () => {
   ];
 
   return (
-    <div className="flex flex-col bg-slate-800 h-full w-full">
-      <div className="flex flex-row justify-center text-white text-4xl mt-10">
-        Poker nights
-      </div>
+    <Fragment>
+      <div className="flex flex-col bg-slate-800 h-full w-full">
+        <div className="flex flex-row justify-center text-white text-4xl mt-10">
+          Poker nights
+        </div>
 
-      <div className="flex flex-row justify-center text-white text-2xl mt-10">
-        <div className="flex">
-          <IoMdTrophy className="mt-1 mx-2" size="1.5rem" />
-          Last winner: David Petric
+        <div className="flex flex-row justify-center text-white text-2xl mt-10">
+          <div className="flex">
+            <IoMdTrophy className="mt-1 mx-2" size="1.5rem" />
+            Last winner: David Petric
+          </div>
         </div>
-      </div>
 
-      <div className="flex flex-row justify-evenly text-white mt-20">
-        {topTable.map((item, index) => (
-          <Button key={index} iconLeft={item.icon} label={item.lable} />
-        ))}
+        <div className="flex flex-row justify-evenly text-white mt-20">
+          {topTable.map((item, index) => (
+            <Button key={index} iconLeft={item.icon} label={item.lable} />
+          ))}
+        </div>
+        <div className="flex flex-row justify-around">
+          <div className="flex flex-col justify-around text-white mt-10 ">
+            {people.map((item, index) => (
+              <div key={index}>{item.lable}</div>
+            ))}
+          </div>
+          <div className="flex flex-col justify-around text-white mt-10 ">
+            {people.map((item, index) => (
+              <div key={index}>{item.wins}</div>
+            ))}
+          </div>
+          <div className="flex flex-col justify-around text-white mt-10 ">
+            {people.map((item, index) => (
+              <div key={index}>{item.secondPlace}</div>
+            ))}
+          </div>
+          <div className="flex flex-col justify-around text-white mt-10 ">
+            {people.map((item, index) => (
+              <div key={index}>{item.profit}</div>
+            ))}
+          </div>
+          <div className="flex flex-col justify-around text-white mt-10 ">
+            {people.map((item, index) => (
+              <div key={index}>{item.rebuy}</div>
+            ))}
+          </div>
+          <div className="flex flex-col justify-around text-white mt-10 ">
+            {people.map((item, index) => (
+              <div key={index}>{item.entry}</div>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-center mt-20">
+          <Button
+            label="Edit"
+            className="flex bg-slate-600 w-1/5 h-12 justify-center rounded-full mr-1 text-white"
+          />
+          <Button
+            onClick={() => toggleModal()}
+            label="Save"
+            className="flex text-white w-1/5 justify-center rounded-full ml-1 border-2"
+          />
+        </div>
       </div>
-      <div className="flex flex-row justify-around">
-        <div className="flex flex-col justify-around text-white mt-10 ">
-          {people.map((item, index) => (
-            <div key={index}>{item.lable}</div>
-          ))}
-        </div>
-        <div className="flex flex-col justify-around text-white mt-10 ">
-          {people.map((item, index) => (
-            <div key={index}>{item.wins}</div>
-          ))}
-        </div>
-        <div className="flex flex-col justify-around text-white mt-10 ">
-          {people.map((item, index) => (
-            <div key={index}>{item.secondPlace}</div>
-          ))}
-        </div>
-        <div className="flex flex-col justify-around text-white mt-10 ">
-          {people.map((item, index) => (
-            <div key={index}>{item.profit}</div>
-          ))}
-        </div>
-        <div className="flex flex-col justify-around text-white mt-10 ">
-          {people.map((item, index) => (
-            <div key={index}>{item.rebuy}</div>
-          ))}
-        </div>
-        <div className="flex flex-col justify-around text-white mt-10 ">
-          {people.map((item, index) => (
-            <div key={index}>{item.entry}</div>
-          ))}
-        </div>
-      </div>
-      <div className="flex justify-center mt-20">
-        <Button
-          label="Edit"
-          className="flex bg-slate-600 w-1/5 h-12 justify-center rounded-full mr-1 text-white"
-        />
-        <Button
-          label="Save"
-          className="flex text-white w-1/5 justify-center rounded-full ml-1 border-2"
-        />
-      </div>
-    </div>
+      <Modal setVisible={toggleModal} visible={openModal}>
+        <div> ceva</div>
+      </Modal>
+    </Fragment>
   );
 };
 
