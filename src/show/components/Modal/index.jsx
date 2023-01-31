@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 const Modal = ({ children, setVisible, title, visible }) => {
-  // useEffect(() => {
-  //   const listener = (e) => {
-  //     if (e.key === "Escape") {
-  //       setVisible(false);
-  //     }
-  //   };
-  //   window.addEventListener("keydown", listener);
-  // });
+  useEffect(() => {
+    const listener = (e) => {
+      if (visible && e.key === "Escape") {
+        setVisible(false);
+      }
+    };
+    window.addEventListener("keydown", listener);
+  }, [visible, setVisible]);
 
   return (
     visible && (

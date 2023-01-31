@@ -1,15 +1,16 @@
-import { Fragment, useState } from "react";
-
 import { FaMedal } from "react-icons/fa";
+import { Fragment, useState } from "react";
 import { IoMdTrophy } from "react-icons/io";
 import { TfiReload } from "react-icons/tfi";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { MdEmojiPeople } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 
 import { Button, Modal } from "show/components";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
 
   const toggleModal = () => {
@@ -122,7 +123,7 @@ const Home = () => {
           ))}
         </div>
         <div className="flex flex-row justify-around">
-          <div className="flex flex-col justify-around text-white mt-10 ">
+          <div className="flex flex-col justify-around text-white mt-10 hover:bg-red-500">
             {people.map((item, index) => (
               <div key={index}>{item.lable}</div>
             ))}
@@ -155,11 +156,12 @@ const Home = () => {
         </div>
         <div className="flex justify-center mt-20">
           <Button
+            onClick={() => toggleModal()}
             label="Edit"
             className="flex bg-slate-600 w-1/5 h-12 justify-center rounded-full mr-1 text-white"
           />
           <Button
-            onClick={() => toggleModal()}
+            onClick={() => navigate("/ceva")}
             label="Save"
             className="flex text-white w-1/5 justify-center rounded-full ml-1 border-2"
           />
