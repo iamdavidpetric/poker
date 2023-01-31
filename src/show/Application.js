@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Home } from "./pages";
+import { Home, Home2 } from "./pages";
 
 const Application = () => {
   return (
@@ -8,6 +8,7 @@ const Application = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/ceva" element={<Home2 />} />
         </Routes>
       </BrowserRouter>
     </div>
