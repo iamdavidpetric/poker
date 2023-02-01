@@ -7,7 +7,7 @@ import { MdEmojiPeople } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 
-import { Button, Modal } from "show/components";
+import { Button, Card, Modal } from "show/components";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -19,13 +19,28 @@ const Home = () => {
   const topTable = [
     {
       lable: "Name",
-      icon: <BsFillPersonFill className="mx-1" size="1.5rem" />,
+      icon: <BsFillPersonFill className="mx-1 w-0 sm:visible" size="1.5rem" />,
     },
-    { lable: "Wins", icon: <IoMdTrophy className="mx-1" size="1.5rem" /> },
-    { lable: "Second place", icon: <FaMedal className="mx-1" size="1.5rem" /> },
-    { lable: "Profit", icon: <GiTakeMyMoney className="mx-1" size="1.5rem" /> },
-    { lable: "Rebuy", icon: <TfiReload className="mx-1" size="1.5rem" /> },
-    { lable: "Entry", icon: <MdEmojiPeople className="mx-1" size="1.5rem" /> },
+    {
+      lable: "Wins",
+      icon: <IoMdTrophy className="mx-1 invisible sm:visible" size="1.5rem" />,
+    },
+    {
+      lable: "Second place",
+      icon: <FaMedal className="mx-1 w-0 sm:visible" size="1.5rem" />,
+    },
+    {
+      lable: "Profit",
+      icon: <GiTakeMyMoney className="mx-1 w-0 sm:visible" size="1.5rem" />,
+    },
+    {
+      lable: "Rebuy",
+      icon: <TfiReload className="mx-1 w-0 sm:visible" size="1.5rem" />,
+    },
+    {
+      lable: "Entry",
+      icon: <MdEmojiPeople className="mx-1 w-0 sm:visible" size="1.5rem" />,
+    },
   ];
 
   const people = [
@@ -71,7 +86,7 @@ const Home = () => {
     },
     {
       lable: "Laura Rușcal",
-      wins: "3",
+      wins: "15",
       secondPlace: "5",
       profit: "-200",
       rebuy: "10",
@@ -122,38 +137,21 @@ const Home = () => {
             <Button key={index} iconLeft={item.icon} label={item.lable} />
           ))}
         </div>
-        <div className="flex flex-row justify-around">
-          <div className="flex flex-col justify-around text-white mt-10 hover:bg-red-500">
-            {people.map((item, index) => (
-              <div key={index}>{item.lable}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.wins}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.secondPlace}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.profit}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.rebuy}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.entry}</div>
-            ))}
-          </div>
+        <div className="mx-4">
+          {people.map((item, index) => (
+            <Card
+              onClick={() => toggleModal()}
+              key={index}
+              fullname={item.lable}
+              wins={item.wins}
+              secondPace={item.secondPlace}
+              profit={item.profit}
+              rebuy={item.rebuy}
+              matches={item.entry}
+            />
+          ))}
         </div>
+
         <div className="flex justify-center mt-20">
           <Button
             onClick={() => toggleModal()}

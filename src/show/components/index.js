@@ -1,4 +1,5 @@
+import Card from "./Card";
 import Modal from "./Modal";
 import Button from "./Button";
 
-export { Button, Modal };
+export { Button, Card, Modal };
