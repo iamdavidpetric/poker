@@ -7,11 +7,16 @@ import { MdEmojiPeople } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 
-import { Button, Card, Modal } from "show/components";
+import { Button, Card, Modal, TextField } from "show/components";
 
 const Home = () => {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+  const [wins, setWins] = useState("");
+  const [rebuy, setRebuy] = useState("");
+  const [entry, setEntry] = useState("");
+  const [profit, setProfit] = useState("");
+  const [secondPlace, setSecondPlace] = useState("");
 
   const toggleModal = () => {
     setOpenModal(!openModal);
@@ -132,7 +137,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-evenly text-white mt-20">
+        <div className="flex flex-row justify-evenly text-white mt-10">
           {topTable.map((item, index) => (
             <Button key={index} iconLeft={item.icon} label={item.lable} />
           ))}
@@ -152,7 +157,7 @@ const Home = () => {
           ))}
         </div>
 
-        <div className="flex justify-center mt-20">
+        <div className="flex justify-center mt-10">
           <Button
             onClick={() => toggleModal()}
             label="Edit"
@@ -166,7 +171,53 @@ const Home = () => {
         </div>
       </div>
       <Modal setVisible={toggleModal} visible={openModal}>
-        <div> ceva</div>
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setWins(e.target.value)}
+          value={wins}
+          label={"Wins"}
+          placeholder={""}
+        />
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setSecondPlace(e.target.value)}
+          value={secondPlace}
+          label={"Second Place"}
+          placeholder={""}
+        />
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setEntry(e.target.value)}
+          value={entry}
+          label={"Entry"}
+          placeholder={""}
+        />
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setProfit(e.target.value)}
+          value={profit}
+          label={"Profit"}
+          placeholder={""}
+        />
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setRebuy(e.target.value)}
+          value={rebuy}
+          label={"Rebuy"}
+          placeholder={""}
+        />
+        <div className="flex justify-center mt-4">
+          <Button
+            onClick={() => toggleModal()}
+            label="Cancel"
+            className="flex bg-slate-600 w-2/5 h-12 justify-center rounded-full mr-1 text-white"
+          />
+          <Button
+            onClick={() => navigate("/ceva")}
+            label="Save"
+            className="flex  w-2/5 justify-center rounded-full ml-1 border-2"
+          />
+        </div>
       </Modal>
     </Fragment>
   );
