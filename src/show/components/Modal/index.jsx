@@ -20,7 +20,7 @@ const Modal = ({ children, setVisible, title, visible }) => {
             onClick={() => setVisible(false)}
           />
           <span className="inline-block align-middle h-screen">&#8203;</span>
-          <div className="inline-block bg-white text-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 align-middle max-w-lg w-full">
+          <div className="inline-block bg-slate-800 text-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 align-middle max-w-lg w-full">
             <div className="flex justify-center p-6 pb-4">
               <div className="flex flex-col mt-3 text-center justify-center w-full">
                 {title && (

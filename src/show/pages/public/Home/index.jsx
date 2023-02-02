@@ -7,11 +7,16 @@ import { MdEmojiPeople } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 
-import { Button, Modal } from "show/components";
+import { Button, Card, Modal, TextField } from "show/components";
 
 const Home = () => {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+  const [wins, setWins] = useState("");
+  const [rebuy, setRebuy] = useState("");
+  const [entry, setEntry] = useState("");
+  const [profit, setProfit] = useState("");
+  const [secondPlace, setSecondPlace] = useState("");
 
   const toggleModal = () => {
     setOpenModal(!openModal);
@@ -19,13 +24,28 @@ const Home = () => {
   const topTable = [
     {
       lable: "Name",
-      icon: <BsFillPersonFill className="mx-1" size="1.5rem" />,
+      icon: <BsFillPersonFill className="mx-1 w-0 sm:visible" size="1.5rem" />,
     },
-    { lable: "Wins", icon: <IoMdTrophy className="mx-1" size="1.5rem" /> },
-    { lable: "Second place", icon: <FaMedal className="mx-1" size="1.5rem" /> },
-    { lable: "Profit", icon: <GiTakeMyMoney className="mx-1" size="1.5rem" /> },
-    { lable: "Rebuy", icon: <TfiReload className="mx-1" size="1.5rem" /> },
-    { lable: "Entry", icon: <MdEmojiPeople className="mx-1" size="1.5rem" /> },
+    {
+      lable: "Wins",
+      icon: <IoMdTrophy className="mx-1 invisible sm:visible" size="1.5rem" />,
+    },
+    {
+      lable: "Second place",
+      icon: <FaMedal className="mx-1 w-0 sm:visible" size="1.5rem" />,
+    },
+    {
+      lable: "Profit",
+      icon: <GiTakeMyMoney className="mx-1 w-0 sm:visible" size="1.5rem" />,
+    },
+    {
+      lable: "Rebuy",
+      icon: <TfiReload className="mx-1 w-0 sm:visible" size="1.5rem" />,
+    },
+    {
+      lable: "Entry",
+      icon: <MdEmojiPeople className="mx-1 w-0 sm:visible" size="1.5rem" />,
+    },
   ];
 
   const people = [
@@ -71,7 +91,7 @@ const Home = () => {
     },
     {
       lable: "Laura Rușcal",
-      wins: "3",
+      wins: "15",
       secondPlace: "5",
       profit: "-200",
       rebuy: "10",
@@ -117,44 +137,27 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-evenly text-white mt-20">
+        <div className="flex flex-row justify-evenly text-white mt-10">
           {topTable.map((item, index) => (
             <Button key={index} iconLeft={item.icon} label={item.lable} />
           ))}
         </div>
-        <div className="flex flex-row justify-around">
-          <div className="flex flex-col justify-around text-white mt-10 hover:bg-red-500">
-            {people.map((item, index) => (
-              <div key={index}>{item.lable}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.wins}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.secondPlace}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.profit}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.rebuy}</div>
-            ))}
-          </div>
-          <div className="flex flex-col justify-around text-white mt-10 ">
-            {people.map((item, index) => (
-              <div key={index}>{item.entry}</div>
-            ))}
-          </div>
+        <div className="mx-4">
+          {people.map((item, index) => (
+            <Card
+              onClick={() => toggleModal()}
+              key={index}
+              fullname={item.lable}
+              wins={item.wins}
+              secondPace={item.secondPlace}
+              profit={item.profit}
+              rebuy={item.rebuy}
+              matches={item.entry}
+            />
+          ))}
         </div>
-        <div className="flex justify-center mt-20">
+
+        <div className="flex justify-center mt-10">
           <Button
             onClick={() => toggleModal()}
             label="Edit"
@@ -168,7 +171,53 @@ const Home = () => {
         </div>
       </div>
       <Modal setVisible={toggleModal} visible={openModal}>
-        <div> ceva</div>
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setWins(e.target.value)}
+          value={wins}
+          label={"Wins"}
+          placeholder={""}
+        />
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setSecondPlace(e.target.value)}
+          value={secondPlace}
+          label={"Second Place"}
+          placeholder={""}
+        />
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setEntry(e.target.value)}
+          value={entry}
+          label={"Entry"}
+          placeholder={""}
+        />
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setProfit(e.target.value)}
+          value={profit}
+          label={"Profit"}
+          placeholder={""}
+        />
+        <TextField
+          className="rounded-lg text-center"
+          onChange={(e) => setRebuy(e.target.value)}
+          value={rebuy}
+          label={"Rebuy"}
+          placeholder={""}
+        />
+        <div className="flex justify-center mt-4">
+          <Button
+            onClick={() => toggleModal()}
+            label="Cancel"
+            className="flex bg-slate-600 w-2/5 h-12 justify-center rounded-full mr-1 text-white"
+          />
+          <Button
+            onClick={() => navigate("/ceva")}
+            label="Save"
+            className="flex  w-2/5 justify-center rounded-full ml-1 border-2"
+          />
+        </div>
       </Modal>
     </Fragment>
   );
