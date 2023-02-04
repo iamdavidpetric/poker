@@ -1,9 +1,5 @@
-import { takeLatest } from "redux-saga/effects";
-
-import { Types as ApplicationTypes } from "../../reducers/application";
-
 export const persisted = function* () {};
-
-const applicationSagas = [takeLatest(ApplicationTypes.PERSISTED, persisted)];
-
-export default applicationSagas;
+// eslint-disable-next-line
+export const generalFail = function* ({ errors = [] }) {
+  console.log('eroare bulan', { errors });
+};

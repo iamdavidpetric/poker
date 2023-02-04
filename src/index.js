@@ -1,15 +1,15 @@
-import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from 'redux-persist/integration/react';
 
-import React from "react";
-import { Provider } from "react-redux";
-import ReactDOM from "react-dom/client";
-import Application from "./show/Application";
-import { store as generateStore } from "process/redux";
+import React from 'react';
+import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom/client';
+import Application from './show/Application';
+import generateStore from 'process/redux/store';
 
-import "./index.css";
+import './index.css';
 
 const { store, persistor } = generateStore();
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -17,5 +17,5 @@ root.render(
         <Application />
       </PersistGate>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

@@ -1,14 +1,14 @@
-import { createLogger } from "redux-logger";
-import createSagaMiddleware from "redux-saga";
-import { persistStore, persistReducer } from "redux-persist";
-import { legacy_createStore, compose, applyMiddleware } from "redux";
+import { createLogger } from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+import { persistStore, persistReducer } from 'redux-persist';
+import { legacy_createStore, compose, applyMiddleware } from 'redux';
 
-import { createBrowserHistory } from "history";
-import { createRouterMiddleware } from "@lagunovsky/redux-react-router";
+import { createBrowserHistory } from 'history';
+import { createRouterMiddleware } from '@lagunovsky/redux-react-router';
 
-import sagas from "../sagas";
-import { storeConfig } from "./config";
-import rootReducer from "./rootReducer";
+import sagas from '../sagas';
+import { storeConfig } from './config';
+import rootReducer from './rootReducer';
 
 const history = createBrowserHistory();
 const routerMiddleware = createRouterMiddleware(history);

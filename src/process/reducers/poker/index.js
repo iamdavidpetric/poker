@@ -4,17 +4,16 @@ import { updateProps, updateProp } from 'process/helpers';
 
 export const { Types, Creators } = createActions(
   {
-    persisted: null,
     updateProps: ['props'],
     updateProp: ['key', 'payload'],
-    generalFail: ['errors'],
+
+    getPlayers: null,
   },
-  { prefix: 'application/' },
+  { prefix: 'poker/' },
 );
 
-export const initialState = {};
+export const initialState = { players: [] };
 
-//redux action modifica state-ul local(reducerul curent)
 export default createReducer(initialState, {
   [Types.UPDATE_PROPS]: updateProps,
   [Types.UPDATE_PROP]: updateProp,
